@@ -1,11 +1,18 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useReducer, useState } from 'react'
+import { weatherReducer, initialState } from './weatherReducer'
 
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-  const [searchCity, setSearchCity] = useState('Ankara')
+  const [state, dispatch] = useReducer(weatherReducer, initialState)
+
   return (
-    <AppContext.Provider value={{ searchCity, setSearchCity }}>
+    <AppContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

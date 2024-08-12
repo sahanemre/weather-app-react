@@ -1,19 +1,25 @@
 import React, { useEffect } from 'react'
 import SearchForm from './SearchForm'
 import myImage from '../assets/images/cloudy.jpg'
+import { useAppContext } from '../context'
 
 const WeatherPanel = () => {
+  const { state } = useAppContext()
+  const { searchCity, temp, date, icon } = state
   return (
-    <div className="container">
+    <div className="weather-panel">
       <SearchForm />
 
       <div className="weather-container">
         <div className="current-weather">
           <div className="weather-forecast">
-            <span>Ankara</span>
-            <img src={myImage} style={{ width: '50px', height: '50px' }} />
-            <p>12</p>
-            <p>Friday 9:53</p>
+            <span>{searchCity}</span>
+            <img
+              src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+              style={{ width: '50px', height: '50px' }}
+            />
+            <p>{temp}</p>
+            <p>{date}</p>
           </div>
           <div className="weather-info">
             <p>Precipitation: 1%</p>

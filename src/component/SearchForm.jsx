@@ -2,7 +2,7 @@ import React from 'react'
 import { useAppContext } from '../context'
 
 const SearchForm = () => {
-  const { searchCity, setSearchCity } = useAppContext()
+  const { dispatch } = useAppContext()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -11,7 +11,7 @@ const SearchForm = () => {
       alert('Lütfen bir şehir adı giriniz!')
       return
     }
-    setSearchCity(e.target.elements.searchCity.value)
+    dispatch({ type: 'SET_SEARCH_CITY', payload: searchValue })
     e.target.reset()
   }
 
